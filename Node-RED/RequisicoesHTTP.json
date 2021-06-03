@@ -1,0 +1,216 @@
+[
+    {
+        "id": "bf2e0f42.cb3a9",
+        "type": "tab",
+        "label": "Requisições HTTP",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "25a91f2.fb284e",
+        "type": "inject",
+        "z": "bf2e0f42.cb3a9",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 100,
+        "wires": [
+            [
+                "16983ff8.3795"
+            ]
+        ]
+    },
+    {
+        "id": "fc38bfa0.1b45a",
+        "type": "http request",
+        "z": "bf2e0f42.cb3a9",
+        "name": "",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 530,
+        "y": 100,
+        "wires": [
+            [
+                "4ca6296b.22f458",
+                "ba698a43.f2dab8",
+                "9153e636.d00768",
+                "3bb64aab.8b3826"
+            ]
+        ]
+    },
+    {
+        "id": "16983ff8.3795",
+        "type": "change",
+        "z": "bf2e0f42.cb3a9",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "method",
+                "pt": "msg",
+                "to": "get",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "http://api.openweathermap.org/data/2.5/weather?q=Santo Andre,BR-SP&appid=0cff0e3516c637c04647dac061d88459&units=metric",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 310,
+        "y": 240,
+        "wires": [
+            [
+                "fc38bfa0.1b45a"
+            ]
+        ]
+    },
+    {
+        "id": "4ca6296b.22f458",
+        "type": "debug",
+        "z": "bf2e0f42.cb3a9",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "abb5e170.de315",
+        "type": "ui_button",
+        "z": "bf2e0f42.cb3a9",
+        "name": "",
+        "group": "bf5e66e7.e2ded8",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Atualizar Temperatura",
+        "tooltip": "Clique para atualizar os dados de clima",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 140,
+        "y": 400,
+        "wires": [
+            [
+                "16983ff8.3795"
+            ]
+        ]
+    },
+    {
+        "id": "ba698a43.f2dab8",
+        "type": "ui_text",
+        "z": "bf2e0f42.cb3a9",
+        "group": "bf5e66e7.e2ded8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Temperatura Atual(Graus C):",
+        "format": "{{msg.payload.main.temp}}",
+        "layout": "col-center",
+        "x": 820,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "9153e636.d00768",
+        "type": "ui_text",
+        "z": "bf2e0f42.cb3a9",
+        "group": "bf5e66e7.e2ded8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Umidade Relativa(%):",
+        "format": "{{msg.payload.main.humidity}}",
+        "layout": "col-center",
+        "x": 780,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "3bb64aab.8b3826",
+        "type": "ui_gauge",
+        "z": "bf2e0f42.cb3a9",
+        "name": "",
+        "group": "bf5e66e7.e2ded8",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "Celsius",
+        "format": "{{msg.payload.main.temp}}",
+        "min": "-10",
+        "max": "60",
+        "colors": [
+            "#0077b3",
+            "#04e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 690,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "bf5e66e7.e2ded8",
+        "type": "ui_group",
+        "name": "Clima",
+        "tab": "793abcb5.fef304",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "793abcb5.fef304",
+        "type": "ui_tab",
+        "name": "HTTP",
+        "icon": "wi-darksky-tornado",
+        "disabled": false,
+        "hidden": false
+    }
+]
