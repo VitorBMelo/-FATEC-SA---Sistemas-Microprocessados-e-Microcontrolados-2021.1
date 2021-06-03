@@ -1,0 +1,523 @@
+[
+    {
+        "id": "b1cb8328.20e67",
+        "type": "tab",
+        "label": "BackEnd Node-Red",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "cb9b82c3.32f3d",
+        "type": "http in",
+        "z": "b1cb8328.20e67",
+        "name": "",
+        "url": "/ola",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 210,
+        "y": 180,
+        "wires": [
+            [
+                "c2b88cca.5e6cf"
+            ]
+        ]
+    },
+    {
+        "id": "72eb8ba9.f9d624",
+        "type": "http response",
+        "z": "b1cb8328.20e67",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 560,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "c2b88cca.5e6cf",
+        "type": "template",
+        "z": "b1cb8328.20e67",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\n    \"mensagem\":\"ola\"\n}",
+        "output": "str",
+        "x": 380,
+        "y": 180,
+        "wires": [
+            [
+                "72eb8ba9.f9d624"
+            ]
+        ]
+    },
+    {
+        "id": "36cb609a.a480c",
+        "type": "http in",
+        "z": "b1cb8328.20e67",
+        "name": "",
+        "url": "/ola-nome",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 260,
+        "wires": [
+            [
+                "63d8cb0a.ec38e4"
+            ]
+        ]
+    },
+    {
+        "id": "786f0717.2abf78",
+        "type": "http response",
+        "z": "b1cb8328.20e67",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 660,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "63d8cb0a.ec38e4",
+        "type": "function",
+        "z": "b1cb8328.20e67",
+        "name": "",
+        "func": "msg.payload = {\n    \"nome-enviado\":msg.req.query.nome,\n    \"tamanho\":msg.req.query.nome.length\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 260,
+        "wires": [
+            [
+                "786f0717.2abf78"
+            ]
+        ]
+    },
+    {
+        "id": "6a5c469b.507638",
+        "type": "http in",
+        "z": "b1cb8328.20e67",
+        "name": "",
+        "url": "/calculadora",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 210,
+        "y": 340,
+        "wires": [
+            [
+                "7e793662.f5a7c8"
+            ]
+        ]
+    },
+    {
+        "id": "7e793662.f5a7c8",
+        "type": "function",
+        "z": "b1cb8328.20e67",
+        "name": "",
+        "func": "var num1 = parseInt(msg.req.query.n1, 10);\nvar num2 = parseInt(msg.req.query.n2, 10);\nvar resultado = num1 + num2;\nmsg.payload = {\n    \"num1\":num1,\n    \"num2\":num2,\n    \"operacao\":\"+\",\n    \"resultado\":resultado\n};\nmsg.statusCode = 200;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 340,
+        "wires": [
+            [
+                "d18f73f5.8d01b"
+            ]
+        ]
+    },
+    {
+        "id": "d18f73f5.8d01b",
+        "type": "http response",
+        "z": "b1cb8328.20e67",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 650,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "7840cfe5.6164e",
+        "type": "http in",
+        "z": "b1cb8328.20e67",
+        "name": "",
+        "url": "/calculadora-basica",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 420,
+        "wires": [
+            [
+                "400d1732.a2fa88"
+            ]
+        ]
+    },
+    {
+        "id": "400d1732.a2fa88",
+        "type": "function",
+        "z": "b1cb8328.20e67",
+        "name": "",
+        "func": "var num1 = parseInt(msg.req.query.n1, 10); //Converte String para Int\nvar num2 = parseInt(msg.req.query.n2, 10);\nvar operacao = msg.req.query.operacao;\nvar resultado;\nif (operacao == \"plus\")\n    resultado = num1 + num2;\nelse if(operacao == \"-\")\n    resultado = num1-num2;\nelse if(operacao == \"*\")\n    resultado = num1*num2;\nelse if(operacao == \"/\")\n    resultado = num1/num2;\nmsg.payload = {\n    \"num1\":num1,\n    \"num2\":num2,\n    \"operacao\":operacao,\n    \"resultado\":resultado\n};\nmsg.statusCode = 200;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 420,
+        "wires": [
+            [
+                "c4804ff9.d695e"
+            ]
+        ]
+    },
+    {
+        "id": "c4804ff9.d695e",
+        "type": "http response",
+        "z": "b1cb8328.20e67",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 650,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "df4ce0f.41c2d2",
+        "type": "ui_switch",
+        "z": "b1cb8328.20e67",
+        "name": "",
+        "label": "switch",
+        "tooltip": "",
+        "group": "d08737ac.c9d7e8",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "x": 130,
+        "y": 500,
+        "wires": [
+            [
+                "515c3f66.dd68f"
+            ]
+        ]
+    },
+    {
+        "id": "18e252f0.f4cfad",
+        "type": "ui_slider",
+        "z": "b1cb8328.20e67",
+        "name": "",
+        "label": "slider",
+        "tooltip": "",
+        "group": "d08737ac.c9d7e8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "255",
+        "step": 1,
+        "x": 130,
+        "y": 560,
+        "wires": [
+            [
+                "e1237d2f.73478"
+            ]
+        ]
+    },
+    {
+        "id": "515c3f66.dd68f",
+        "type": "change",
+        "z": "b1cb8328.20e67",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "switch",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e1237d2f.73478",
+        "type": "change",
+        "z": "b1cb8328.20e67",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "slider",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f9dd8ffc.785c1",
+        "type": "change",
+        "z": "b1cb8328.20e67",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "slider",
+                "pt": "flow",
+                "to": "0",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "switch",
+                "pt": "flow",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "gauge",
+                "pt": "flow",
+                "to": "5",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bd8c7cee.0c6c5",
+        "type": "inject",
+        "z": "b1cb8328.20e67",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 840,
+        "wires": [
+            [
+                "f9dd8ffc.785c1"
+            ]
+        ]
+    },
+    {
+        "id": "abb72cb1.5640a",
+        "type": "function",
+        "z": "b1cb8328.20e67",
+        "name": "",
+        "func": "msg.payload = {\n    \"slider\":flow.get(\"slider\"),\n    \"gauge\":flow.get(\"gauge\"),\n    \"switch\":flow.get(\"switch\")\n};\nmsg.statusCode = 200;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 980,
+        "wires": [
+            [
+                "4111c8d6.704668"
+            ]
+        ]
+    },
+    {
+        "id": "2cc8ee42.e46652",
+        "type": "http in",
+        "z": "b1cb8328.20e67",
+        "name": "",
+        "url": "/get-status",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 980,
+        "wires": [
+            [
+                "abb72cb1.5640a"
+            ]
+        ]
+    },
+    {
+        "id": "4111c8d6.704668",
+        "type": "http response",
+        "z": "b1cb8328.20e67",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 550,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "5c471354.8e060c",
+        "type": "http in",
+        "z": "b1cb8328.20e67",
+        "name": "",
+        "url": "/atualiza-gauge",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 1040,
+        "wires": [
+            [
+                "b48291a4.0cb4e"
+            ]
+        ]
+    },
+    {
+        "id": "4e852ad6.b73404",
+        "type": "http response",
+        "z": "b1cb8328.20e67",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 550,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "b48291a4.0cb4e",
+        "type": "function",
+        "z": "b1cb8328.20e67",
+        "name": "",
+        "func": "var novo_gauge = msg.payload.value;\nflow.set(\"gauge\", novo_gauge);\nmsg.payload = novo_gauge;\nmsg.statusCode = 200;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 1040,
+        "wires": [
+            [
+                "4e852ad6.b73404",
+                "a7ffc07.d5d474"
+            ]
+        ]
+    },
+    {
+        "id": "a7ffc07.d5d474",
+        "type": "ui_gauge",
+        "z": "b1cb8328.20e67",
+        "name": "",
+        "group": "7329079f.eae168",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "gauge",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 10,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 550,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "d08737ac.c9d7e8",
+        "type": "ui_group",
+        "name": "Entrada",
+        "tab": "8b8675ca.b464b8",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "7329079f.eae168",
+        "type": "ui_group",
+        "name": "Saida",
+        "tab": "8b8675ca.b464b8",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "8b8675ca.b464b8",
+        "type": "ui_tab",
+        "name": "Servidor HTTP",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
