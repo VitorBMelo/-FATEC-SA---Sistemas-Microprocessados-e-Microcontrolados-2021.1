@@ -1,0 +1,370 @@
+[
+    {
+        "id": "b39c4d93.e2304",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "41dd7aae.5c7674",
+        "type": "inject",
+        "z": "b39c4d93.e2304",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Olá,Mundo!",
+        "payloadType": "str",
+        "x": 240,
+        "y": 220,
+        "wires": [
+            [
+                "b8da5b3a.32eb28"
+            ]
+        ]
+    },
+    {
+        "id": "b8da5b3a.32eb28",
+        "type": "debug",
+        "z": "b39c4d93.e2304",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 490,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "79e04395.6bc3ac",
+        "type": "inject",
+        "z": "b39c4d93.e2304",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 440,
+        "wires": [
+            [
+                "a3fd79b3.cd3bb8"
+            ]
+        ]
+    },
+    {
+        "id": "3a59b9b.bbc4646",
+        "type": "debug",
+        "z": "b39c4d93.e2304",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "a3fd79b3.cd3bb8",
+        "type": "change",
+        "z": "b39c4d93.e2304",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Embarcados",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "curso",
+                "pt": "flow",
+                "to": "mecatrônica",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 400,
+        "wires": [
+            [
+                "3a59b9b.bbc4646"
+            ]
+        ]
+    },
+    {
+        "id": "5e161ee5.ed42a",
+        "type": "inject",
+        "z": "b39c4d93.e2304",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 210,
+        "y": 560,
+        "wires": [
+            [
+                "ad17cfdc.6ed6e"
+            ]
+        ]
+    },
+    {
+        "id": "ad17cfdc.6ed6e",
+        "type": "change",
+        "z": "b39c4d93.e2304",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "curso",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 540,
+        "wires": [
+            [
+                "7919c0a5.ab278"
+            ]
+        ]
+    },
+    {
+        "id": "7919c0a5.ab278",
+        "type": "debug",
+        "z": "b39c4d93.e2304",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "f3dfcebf.b93c3",
+        "type": "inject",
+        "z": "b39c4d93.e2304",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 200,
+        "y": 660,
+        "wires": [
+            [
+                "3d77f8d7.d744f8"
+            ]
+        ]
+    },
+    {
+        "id": "3d77f8d7.d744f8",
+        "type": "switch",
+        "z": "b39c4d93.e2304",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 390,
+        "y": 660,
+        "wires": [
+            [
+                "841fa828.85c698"
+            ],
+            [
+                "b4a77389.906b5"
+            ],
+            [
+                "c1c023e3.30004"
+            ]
+        ]
+    },
+    {
+        "id": "841fa828.85c698",
+        "type": "change",
+        "z": "b39c4d93.e2304",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "curso",
+                "pt": "flow",
+                "to": "Mecatrônica",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b4a77389.906b5",
+        "type": "change",
+        "z": "b39c4d93.e2304",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "curso",
+                "pt": "flow",
+                "to": "Goku",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c1c023e3.30004",
+        "type": "change",
+        "z": "b39c4d93.e2304",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "curso",
+                "pt": "flow",
+                "to": "Programação",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b2de3931.274de8",
+        "type": "inject",
+        "z": "b39c4d93.e2304",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "x": 190,
+        "y": 720,
+        "wires": [
+            [
+                "3d77f8d7.d744f8"
+            ]
+        ]
+    }
+]
